@@ -1,5 +1,4 @@
 #include "idx_file.h"
-#include <print>
 #include <ranges>
 #include <cassert>
 #include <iterator>
@@ -37,7 +36,7 @@ int main()
 
 		for (int i = 0; i < image_h; ++i) {
 			for (int j = 0; j < image_w; ++j) {
-				float v = (float)matrix_at(&image_begin, i, j, image_h, image_w) / (float)((1 << sizeof(std::uint8_t) * 8) - 1);
+				float v = (float)matrix_at(&image_begin, i, j, image_h, image_w) / 255.f;
 				std::cout << float_to_char(1.f - v);
 			}
 			std::cout << '\n';
