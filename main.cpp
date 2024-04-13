@@ -27,11 +27,14 @@ int main()
 	static constexpr auto image_w = 28u;
 	static constexpr auto image_h = 28u;
 
+	auto labels = std::move(labels_file.data_uint8_t);
+	auto images = std::move(images_file.data_uint8_t);
+
 	const size_t n = 7;
 	for (const auto& [image_begin, label] : 
 			std::views::zip(
-				images_file.data_uint8_t | std::views::stride(image_w * image_h),
-				labels_file.data_uint8_t
+				images | std::views::stride(image_w * image_h),
+				labels
 			) | std::views::take(n)) {
 
 		for (int i = 0; i < image_h; ++i) {
